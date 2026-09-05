@@ -4,35 +4,41 @@ import "fmt"
 
 func main() {
 	for {
-		fmt.Println("Dude its calculator")
-		fmt.Println("give me number ")
-		var a int
-		fmt.Scan(&a)
-		if a == 99 {
-			fmt.Println("God damn, 99")
+		var num1 int
+		var operator string
+		var num2 int
+
+		fmt.Println("\n--- Калькулятор іске қосылды ---")
+		fmt.Print("Бірінші санды енгіз (шығу үшін 99 жаз): ")
+		fmt.Scan(&num1)
+
+		if num1 == 99 {
+			fmt.Println("Бағдарлама аяқталды. Қош сау болыңыз!")
 			break
 		}
-		fmt.Println("write +,-,*,/")
-		var b string
-		fmt.Scan(&b)
 
-		fmt.Println("write number")
-		var c int
-		fmt.Scan(&c)
+		fmt.Print("Математикалық амалды енгіз (+, -, *, /): ")
+		fmt.Scan(&operator)
 
-		if b == "+" {
-			fmt.Println("kosu", a+c)
-		} else if b == "-" {
-			fmt.Println("minus", a-c)
-		} else if b == "*" {
-			fmt.Println("multiply", a*c)
-		} else if b == "/" {
-			if c == 0 {
-				fmt.Println("god damn bro its wrong")
+		fmt.Print("Екінші санды енгіз: ")
+		fmt.Scan(&num2)
+
+		if operator == "+" {
+			fmt.Println("Нәтиже (қосу):", num1+num2)
+		} else if operator == "-" {
+			fmt.Println("Нәтиже (азайту):", num1-num2)
+		} else if operator == "*" {
+			fmt.Println("Нәтиже (көбейту):", num1*num2)
+		} else if operator == "/" {
+
+			if num2 == 0 {
+				fmt.Println("Қате: Санды нөлге бөлуге болмайды!")
 				continue
 			}
-			fmt.Println("bolu", a/c)
+			fmt.Println("Нәтиже (бөлу):", num1/num2)
+		} else {
 
+			fmt.Println("Қате: Белгісіз математикалық амал енгізілді!")
 		}
 	}
 }
