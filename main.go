@@ -23,21 +23,23 @@ func main() {
 		fmt.Print("Екінші санды енгіз: ")
 		fmt.Scan(&num2)
 
-		if operator == "+" {
+		// Ескі if-else блоктарының орнына SWITCH-CASE қолданамыз
+		switch operator {
+		case "+":
 			fmt.Println("Нәтиже (қосу):", num1+num2)
-		} else if operator == "-" {
+		case "-":
 			fmt.Println("Нәтиже (азайту):", num1-num2)
-		} else if operator == "*" {
+		case "*":
 			fmt.Println("Нәтиже (көбейту):", num1*num2)
-		} else if operator == "/" {
-
+		case "/":
+			// Қауіпсіздік тексерісін case ішінде қалдырамыз
 			if num2 == 0 {
 				fmt.Println("Қате: Санды нөлге бөлуге болмайды!")
-				continue
+				continue // Бұл continue сырттағы for циклін басына қайтарады
 			}
 			fmt.Println("Нәтиже (бөлу):", num1/num2)
-		} else {
-
+		default:
+			// Пайдаланушы қате таңба енгізсе, осы блок іске қосылады
 			fmt.Println("Қате: Белгісіз математикалық амал енгізілді!")
 		}
 	}
