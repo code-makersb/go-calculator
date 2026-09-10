@@ -1,58 +1,28 @@
 package main
 
 import (
-	"errors"
 	"fmt"
+
+	"github.com/code-makersb/go-calculator/calculator"
 )
-
-func add(num1, num2 int) int {
-	return num1 + num2
-}
-
-func subtract(num1, num2 int) int {
-	return num1 - num2
-}
-
-func multiply(num1, num2 int) int {
-	return num1 * num2
-}
-
-func divide(num1, num2 int) (int, error) {
-	if num2 == 0 {
-		return 0, errors.New("Nolge boluge balmaidi")
-	}
-	return num1 / num2, nil
-}
-func power(base, exponent int) (int, error) {
-	if exponent < 0 {
-		return 0, errors.New("Теріс дәрежеге бөлуге болмайды")
-	} else if exponent == 0 {
-		return 1, nil
-	}
-	result := 1
-	for i := 0; i < exponent; i++ {
-		result *= base
-	}
-
-	return result, nil
-}
 
 func main() {
 	for {
 		var num1, num2 int
 		var amal string
-		fmt.Println("This is calculator")
+		fmt.Println("\n--- Калькулятор іске қосылды ---")
 
-		fmt.Println("give me number num1")
+		fmt.Print("Бірінші санды енгіз (шығу үшін 99 жаз): ")
 		_, err := fmt.Scan(&num1)
 		if num1 == 99 {
-			fmt.Println("Congradulations your won")
+			fmt.Println("Бағдарлама аяқталды!")
 			break
 		}
 		if err != nil {
-			fmt.Println("The wrong number")
+			fmt.Println("Қате: тек сан енгізіңіз!")
 			return
 		}
+
 		fmt.Print("Амалды таңдаңыз (+, -, *, /, ^): ")
 		fmt.Scan(&amal)
 
@@ -62,31 +32,31 @@ func main() {
 			fmt.Println("Қате: тек сан енгізіңіз!")
 			return
 		}
+
+		// Функцияларды 'calculator.' арқылы шақырамыз!
 		switch amal {
 		case "+":
-			fmt.Println("Kosu", add(num1, num2))
+			fmt.Println("Қосу нәтижесі:", calculator.Add(num1, num2))
 		case "-":
-			fmt.Println("azaitu", subtract(num1, num2))
+			fmt.Println("Азайту нәтижесі:", calculator.Subtract(num1, num2))
 		case "*":
-			fmt.Println("Kobeitu", multiply(num1, num2))
+			fmt.Println("Көбейту нәтижесі:", calculator.Multiply(num1, num2))
 		case "/":
-			bolu, err := divide(num1, num2)
+			bolu, err := calculator.Divide(num1, num2)
 			if err != nil {
-				fmt.Println("kate", err)
+				fmt.Println("Қате:", err)
 			} else {
-				fmt.Println("Bolu", bolu)
+				fmt.Println("Бөлу нәтижесі:", bolu)
 			}
-		default:
-			fmt.Println("Kate not found")
 		case "^":
-			powResult, err := power(num1, num2)
+			powResult, err := calculator.Power(num1, num2)
 			if err != nil {
 				fmt.Println("Қате:", err)
 			} else {
 				fmt.Println("Дәреже нәтижесі:", powResult)
 			}
-
+		default:
+			fmt.Println("Қате: белгісіз амал енгізілді!")
 		}
 	}
-
 }
