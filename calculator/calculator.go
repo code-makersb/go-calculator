@@ -1,23 +1,23 @@
-package main
+package calculator
 
 import (
 	"errors"
 	"fmt"
 )
 
-func add(num1, num2 int) int {
+func Add(num1, num2 int) int {
 	return num1 + num2
 }
 
-func subtract(num1, num2 int) int {
+func Subtract(num1, num2 int) int {
 	return num1 - num2
 }
 
-func multiply(num1, num2 int) int {
+func Multiply(num1, num2 int) int {
 	return num1 * num2
 }
 
-func divide(num1, num2 int) (int, error) {
+func Divide(num1, num2 int) (int, error) {
 	if num2 == 0 {
 		return 0, errors.New("Nolge boluge balmaidi")
 	}
@@ -64,13 +64,13 @@ func main() {
 		}
 		switch amal {
 		case "+":
-			fmt.Println("Kosu", add(num1, num2))
+			fmt.Println("Kosu", Add(num1, num2))
 		case "-":
-			fmt.Println("azaitu", subtract(num1, num2))
+			fmt.Println("azaitu", Subtract(num1, num2))
 		case "*":
-			fmt.Println("Kobeitu", multiply(num1, num2))
+			fmt.Println("Kobeitu", Multiply(num1, num2))
 		case "/":
-			bolu, err := divide(num1, num2)
+			bolu, err := Divide(num1, num2)
 			if err != nil {
 				fmt.Println("kate", err)
 			} else {
